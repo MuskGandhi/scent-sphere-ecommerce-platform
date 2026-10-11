@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="ScentSphere.Application/ScentSphere.Application.csproj" Id="e7f69452-aa1a-4a3e-84d9-1374f2da4316" />
+  <Project Path="ScentSphere.Domain/ScentSphere.Domain.csproj" Id="6a48b809-550a-472f-a712-7abafb31f70f" />
+  <Project Path="ScentSphere.Infrastructure/ScentSphere.Infrastructure.csproj" Id="5f0e9252-a58e-4289-bec3-fd1a7ebe34ec" />
+  <Project Path="ScentSphere.Persistence/ScentSphere.Persistence.csproj" Id="307b4783-4c6f-43dc-b2fb-6b9e1c3683b5" />
+  <Project Path="ScentSphere.Tests.Integration/ScentSphere.Tests.Integration.csproj" Id="944f7346-6ac6-41bb-8d6c-3d2329412321" />
+  <Project Path="ScentSphere.Tests.Unit/ScentSphere.Tests.Unit.csproj" Id="bcac448d-0f92-4904-8968-fd918f173cfe" />
+  <Project Path="ScentSphere/ScentSphere.Api.csproj" />
+</Solution>
