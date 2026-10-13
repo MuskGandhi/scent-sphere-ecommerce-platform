@@ -29,7 +29,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowCredentials()
             .WithOrigins(
-                "http://localhost:4200"
+                "http://localhost:4200",
+                "https://scentsphere-ui.onrender.com"
             );
     });
 });
