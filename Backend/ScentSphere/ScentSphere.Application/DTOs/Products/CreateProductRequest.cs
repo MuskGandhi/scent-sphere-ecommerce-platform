@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace ScentSphere.Application.DTOs.Products
 {
-    internal class CreateProductRequest
+    public class CreateProductRequest
     {
+        public string Name { get; set; } = string.Empty;
+
+        public string Description { get; set; } = string.Empty;
+
+        public decimal Price { get; set; }
+
+        public int StockQuantity { get; set; }
+
+        public bool IsFeatured { get; set; }
+
+        public Guid BrandId { get; set; }
+
+        public Guid CategoryId { get; set; }
     }
 }

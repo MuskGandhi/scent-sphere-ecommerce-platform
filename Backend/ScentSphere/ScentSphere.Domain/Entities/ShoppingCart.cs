@@ -13,7 +13,6 @@ namespace ScentSphere.Domain.Entities
 
         public User User { get; set; } = null!;
 
-        public ICollection<ShoppingCartItem> Items
-        { get; set; } = new List<ShoppingCartItem>();
+        public ICollection<ShoppingCartItem> Items{ get; set; } = new List<ShoppingCartItem>();
     }
 }

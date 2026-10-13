@@ -21,6 +21,7 @@ namespace ScentSphere.Infrastructure.Auth
             _configuration = configuration;
         }
 
+
         public string GenerateToken(User user)
         {
             var claims = new[]

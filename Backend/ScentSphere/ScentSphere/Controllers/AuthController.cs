@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ScentSphere.Application.DTOs.Auth;
 using ScentSphere.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ScentSphere.Api.Controllers
 {
@@ -39,6 +40,26 @@ namespace ScentSphere.Api.Controllers
             if (!result.IsSuccess)
             {
                 return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
+
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            var result = await _authService.LogoutAsync();
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+            if (Request?.Cookies != null)
+            {
+                if (Request.Cookies.ContainsKey("refreshToken"))
+                    Response.Cookies.Delete("refreshToken");
+
+                if (Request.Cookies.ContainsKey("accessToken"))
+                    Response.Cookies.Delete("accessToken");
             }
 
             return Ok(result);

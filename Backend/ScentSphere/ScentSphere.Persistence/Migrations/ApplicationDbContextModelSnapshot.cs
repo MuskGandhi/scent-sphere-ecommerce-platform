@@ -521,7 +521,7 @@ namespace ScentSphere.Persistence.Migrations
 
             modelBuilder.Entity("ScentSphere.Domain.Entities.ShoppingCartItem", b =>
                 {
-                    b.HasOne("ScentSphere.Domain.Entities.ShoppingCart", "Cart")
+                    b.HasOne("ScentSphere.Domain.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("Items")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -533,9 +533,9 @@ namespace ScentSphere.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cart");
-
                     b.Navigation("Product");
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("ScentSphere.Domain.Entities.User", b =>

@@ -157,7 +157,9 @@ namespace ScentSphere.Application.Services
             {
                 IsSuccess = true,
                 Message = "Login successful",
-                Token = token
+                Token = token,
+                Role = user.Role.Name,
+                UserName = $"{user.FirstName} {user.LastName}"
             };
         }
 
@@ -165,6 +167,15 @@ namespace ScentSphere.Application.Services
             VerifyEmailRequest request)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<AuthResponse> LogoutAsync()
+        {
+            return await Task.FromResult(new AuthResponse
+            {
+                IsSuccess = true,
+                Message = "Logout successful"
+            });
         }
 
         private string GenerateOtp()

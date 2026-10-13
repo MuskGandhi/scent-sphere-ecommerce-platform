@@ -57,6 +57,12 @@ namespace ScentSphere.Persistence.Context
             modelBuilder.Entity<OrderItem>()
                 .Property(x => x.UnitPrice)
                 .HasPrecision(18, 2);
+
+            modelBuilder.Entity<ShoppingCartItem>()
+                .HasOne(x => x.ShoppingCart)
+                .WithMany(x => x.Items)
+                .HasForeignKey(x => x.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

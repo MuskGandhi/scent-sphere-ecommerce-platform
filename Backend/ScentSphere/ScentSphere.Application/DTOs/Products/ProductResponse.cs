@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ScentSphere.Application.DTOs.Products
 {
-    internal class ProductResponse
+    public class ProductResponse
     {
+        public bool IsSuccess { get; set; }
+
+        public string Message { get; set; } = string.Empty;
     }
 }

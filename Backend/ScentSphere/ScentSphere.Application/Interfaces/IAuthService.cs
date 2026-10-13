@@ -14,5 +14,7 @@ namespace ScentSphere.Application.Interfaces
         Task<AuthResponse> LoginAsync(LoginRequest request);
 
         Task<AuthResponse> VerifyEmailAsync(VerifyEmailRequest request);
+
+        Task<AuthResponse> LogoutAsync();
     }
 }
