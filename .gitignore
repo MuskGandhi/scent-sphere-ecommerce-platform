@@ -1,0 +1,22 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Backend/ScentSphere/.vs
+/.vs/CopilotSnapshots
+/Backend/ScentSphere/ScentSphere/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere/obj
+/Backend/ScentSphere/ScentSphere.Application/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Application/obj
+/Backend/ScentSphere/ScentSphere.Domain/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Domain/obj
+/Backend/ScentSphere/ScentSphere.Infrastructure/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Infrastructure/obj/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Infrastructure/obj
+/Backend/ScentSphere/ScentSphere.Persistence/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Persistence/obj
+/Backend/ScentSphere/ScentSphere.Tests.Integration/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Tests.Integration/obj
+/Backend/ScentSphere/ScentSphere.Tests.Unit/bin/Debug/net8.0
+/Backend/ScentSphere/ScentSphere.Tests.Unit/obj
+/.gitignore
