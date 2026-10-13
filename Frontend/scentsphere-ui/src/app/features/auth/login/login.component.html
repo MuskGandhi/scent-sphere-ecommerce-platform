@@ -1,0 +1,69 @@
+<div class="login-page">
+
+  <div class="branding">
+
+    <h1>ScentSphere</h1>
+
+    <p>
+      Discover timeless luxury fragrances
+      inspired by the world's most iconic
+      perfume houses.
+    </p>
+
+  </div>
+
+  <div class="login-card">
+
+    <h2>Welcome Back</h2>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="login()">
+
+      <div class="form-group">
+
+        <input
+          type="email"
+          placeholder="Email Address"
+          formControlName="email">
+
+      </div>
+
+      <div class="form-group">
+
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password">
+
+      </div>
+
+      <button
+        type="submit"
+        class="login-btn">
+
+        {{
+          isLoading
+            ? 'Signing In...'
+            : 'Sign In'
+        }}
+
+      </button>
+
+    </form>
+
+    <div class="register-link">
+
+      New to Scent Sphere?
+
+      <a routerLink="/register">
+
+        Create Account
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,111 @@
+<div class="admin-page">
+  <div class="page-header">
+    <div>
+      <h1>Product Management</h1>
+
+      <p>Manage your fragrance collection</p>
+    </div>
+
+    <button class="add-btn" (click)="openCreateForm()">+ Add Product</button>
+  </div>
+
+  <div class="form-card" *ngIf="showForm" id="productForm">
+    <h2>
+      {{ editingProductId ? 'Edit Product' : 'Create Product' }}
+    </h2>
+
+    <form [formGroup]="productForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Product Name</label>
+
+          <input type="text" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label>Price (₹)</label>
+
+          <input type="number" formControlName="price" />
+        </div>
+
+        <div class="form-group">
+          <label>Stock Quantity</label>
+
+          <input type="number" formControlName="stockQuantity" />
+        </div>
+
+        <div class="form-group">
+          <label>Brand</label>
+
+          <select formControlName="brandId">
+            <option value="">Select Brand</option>
+
+            <option *ngFor="let brand of brands" [value]="brand.id">
+              {{ brand.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+
+          <select formControlName="categoryId">
+            <option value="">Select Category</option>
+
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+
+        <textarea rows="4" formControlName="description"> </textarea>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <h4>Featured Product</h4>
+
+          <span> Show on homepage highlights </span>
+        </div>
+
+        <label class="featured-toggle">
+          <input type="checkbox" formControlName="isFeatured" />
+
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <button type="button" class="save-btn" (click)="saveProduct()">
+        {{ editingProductId ? 'Update Product' : 'Save Product' }}
+      </button>
+    </form>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of products; trackBy: trackByProductId">
+      <div class="product-content">
+        <h3>
+          {{ product.name }}
+        </h3>
+
+        <p>
+          {{ product.brand }}
+        </p>
+
+        <span class="price"> ₹{{ product.price }} </span>
+
+        <span class="stock"> Stock: {{ product.stockQuantity }} </span>
+      </div>
+
+      <div class="actions">
+        <button class="edit-btn" (click)="editProduct(product)">Edit</button>
+
+        <button class="delete-btn" (click)="deleteProduct(product)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #1a1a1a;
+  --gold: #b89b5e;
+  --background: #f9f8f5;
+  --card: #ffffff;
+  --border: #e7e2d8;
+  --text: #2b2b2b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: .9;
+}
+
+/* .card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+} */
+
+:root {
+
+  --background: #f7f5f1;
+
+  --surface: #ffffff;
+
+  --primary: #222;
+
+  --accent: #b8965b;
+
+  --border: #e3ddd3;
+}
+
+body {
+
+  background: var(--background);
+
+  font-family:
+    'Segoe UI',
+    sans-serif;
+}
+
+button {
+
+  height: 54px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #222;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+button:hover {
+
+  background: #111;
+}
+
+input {
+
+  height: 54px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  padding-left: 16px;
+}
+
+.card {
+
+  background: white;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.08);
+}

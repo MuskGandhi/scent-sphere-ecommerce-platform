@@ -1,0 +1,53 @@
+<div class="orders-page">
+  <h1>Order History</h1>
+
+  <div class="empty-orders" *ngIf="orders.length === 0">No Orders Found</div>
+
+  <div class="order-card" *ngFor="let order of orders">
+    <div class="order-header">
+      <div>
+        <span class="label"> Order ID </span>
+
+        <p>
+          {{ order.orderId }}
+        </p>
+      </div>
+
+      <div>
+        <span class="status">
+          {{ order.status }}
+        </span>
+      </div>
+    </div>
+
+    <div class="order-info">
+      <div>
+        <strong>Order Date</strong>
+
+        <p>
+          {{ order.createdAt | date: 'mediumDate' }}
+        </p>
+      </div>
+
+      <div>
+        <strong>Total</strong>
+
+        <p>₹{{ order.totalAmount }}</p>
+      </div>
+    </div>
+
+    <div class="items-section" *ngIf="order.items.length">
+      <h4>Items</h4>
+
+      <div *ngFor="let item of order.items" class="item-row">
+        <span class="product-name">
+          {{ item.productName }}
+        </span>
+
+        <span class="quantity"> Qty: {{ item.quantity }} </span>
+
+        <span class="amount"> ₹{{ item.totalPrice }} </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="register-page">
+  <div class="register-wrapper">
+    <div class="branding">
+      <h1>ScentSphere</h1>
+
+      <p>
+        Join a curated destination for luxury fragrances inspired by the world's most iconic perfume
+        houses.
+      </p>
+    </div>
+
+    <div class="register-card">
+      <h2>Create Account</h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="row">
+          <div class="form-group">
+            <input type="text" placeholder="First Name" formControlName="firstName" />
+
+            <small
+              class="validation-error"
+              *ngIf="
+                registerForm.get('firstName')?.touched &&
+                registerForm.get('firstName')?.hasError('required')
+              "
+            >
+              First name is required.
+            </small>
+          </div>
+
+          <div class="form-group">
+            <input type="text" placeholder="Last Name" formControlName="lastName" />
+
+            <small
+              class="validation-error"
+              *ngIf="
+                registerForm.get('lastName')?.touched &&
+                registerForm.get('lastName')?.hasError('required')
+              "
+            >
+              Last name is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" placeholder="Email Address" formControlName="email" />
+
+          <small
+            class="validation-error"
+            *ngIf="
+              registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')
+            "
+          >
+            Email address is required.
+          </small>
+          <small
+            class="validation-error"
+            *ngIf="
+              registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')
+            "
+          >
+            Enter a valid email address.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
+
+          <small
+            class="validation-error"
+            *ngIf="
+              registerForm.get('phoneNumber')?.touched &&
+              registerForm.get('phoneNumber')?.hasError('required')
+            "
+          >
+            Phone number is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <input type="password" placeholder="Password" formControlName="password" />
+
+          <small
+            class="validation-error"
+            *ngIf="
+              registerForm.get('password')?.touched &&
+              registerForm.get('password')?.hasError('required')
+            "
+          >
+            Password is required.
+          </small>
+          <small
+            class="validation-error"
+            *ngIf="
+              registerForm.get('password')?.touched &&
+              registerForm.get('password')?.hasError('minlength')
+            "
+          >
+            Password must be at least 6 characters.
+          </small>
+        </div>
+
+        <button type="submit" class="register-btn">
+          {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+        </button>
+      </form>
+
+      <div class="login-link">
+        Already have an account?
+
+        <a routerLink="/login"> Sign In </a>
+      </div>
+    </div>
+  </div>
+</div>

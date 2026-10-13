@@ -1,0 +1,185 @@
+.register-page {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 2rem;
+
+  background: #f7f5f1;
+}
+
+.register-wrapper {
+  width: 100%;
+
+  max-width: 1200px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 500px;
+
+  gap: 4rem;
+
+  align-items: center;
+}
+
+.branding h1 {
+  font-size: 5rem;
+
+  font-weight: 300;
+
+  letter-spacing: 8px;
+
+  color: #222;
+
+  margin-bottom: 1.5rem;
+}
+
+.branding p {
+  max-width: 500px;
+
+  color: #666;
+
+  line-height: 1.8;
+
+  font-size: 1.05rem;
+}
+
+.register-card {
+  background: #fff;
+
+  border-radius: 24px;
+
+  padding: 3rem;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.register-card h2 {
+  text-align: center;
+
+  margin-bottom: 2rem;
+
+  color: #222;
+}
+
+.row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+
+  height: 54px;
+
+  padding: 0 16px;
+
+  border: 1px solid #e3ddd3;
+
+  border-radius: 12px;
+
+  font-size: 0.95rem;
+
+  transition: all 0.3s ease;
+}
+
+.validation-error {
+  display: block;
+
+  margin: 0.4rem 0 0 0.25rem;
+
+  color: #b42318;
+
+  font-size: 0.8rem;
+}
+
+.form-group input:focus {
+  outline: none;
+
+  border-color: #b8965b;
+
+  box-shadow: 0 0 0 4px rgba(184, 150, 91, 0.12);
+}
+
+.register-btn {
+  width: 100%;
+
+  height: 56px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #222;
+
+  color: white;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  margin-top: 1rem;
+}
+
+.register-btn:hover {
+  background: #111;
+}
+
+.login-link {
+  text-align: center;
+
+  margin-top: 1.5rem;
+}
+
+.login-link a {
+  color: #b8965b;
+
+  text-decoration: none;
+}
+
+/* Tablet */
+
+@media (max-width: 992px) {
+  .register-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .branding {
+    text-align: center;
+  }
+
+  .branding h1 {
+    font-size: 3.5rem;
+  }
+
+  .branding p {
+    margin: auto;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .branding {
+    display: none;
+  }
+
+  .register-card {
+    padding: 2rem;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

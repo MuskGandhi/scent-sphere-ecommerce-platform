@@ -1,0 +1,30 @@
+
+<div class="details-page">
+
+  <div class="image-section">
+
+    <img
+      [src]="product?.images?.[0]?.imageUrl"
+      [alt]="product?.name ?? 'Product image'">
+
+  </div>
+
+  <div class="info-section">
+
+    <h1>{{ product?.name }}</h1>
+
+    <p>{{ product?.brand }}</p>
+
+    <h2>₹{{ product?.price }}</h2>
+
+    <p class="description">
+      {{ product?.description }}
+    </p>
+
+    <button (click)="addToCart()">
+      Add To Cart
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,61 @@
+<div class="products-container">
+  <div class="hero">
+    <h1>Luxury Fragrances</h1>
+
+    <p>Discover timeless scents from the world's finest perfume houses.</p>
+
+    <input
+      type="text"
+      placeholder="Search fragrances..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="currentPage = 1"
+    />
+  </div>
+
+  <div class="loading" *ngIf="isLoading">Loading products...</div>
+
+  <div class="product-grid" *ngIf="!isLoading">
+    <div class="product-card" *ngFor="let product of pagedProducts">
+      <img
+        class="product-image"
+        [src]="product.images?.[0]?.imageUrl"
+        [alt]="product.name"
+        loading="lazy"
+      />
+
+      <div class="card-body">
+        <span class="brand">
+          {{ product.brand }}
+        </span>
+
+        <h3>
+          {{ product.name }}
+        </h3>
+
+        <p>
+          {{ product.description }}
+        </p>
+
+        <h4>₹{{ product.price }}</h4>
+
+        <div class="product-actions">
+          <button class="details-btn" [routerLink]="['/products', product.id]">View Details</button>
+
+          <button class="cart-btn" (click)="addToCart(product)">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="showPagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">←</button>
+
+    <span class="page-number">
+      {{ currentPage }}
+      /
+      {{ totalPages }}
+    </span>
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">→</button>
+  </div>
+</div>

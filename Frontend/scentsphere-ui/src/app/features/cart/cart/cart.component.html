@@ -1,0 +1,25 @@
+<div class="cart-page">
+  <h1>Shopping Cart</h1>
+
+  <div class="cart-item" *ngFor="let item of cartItems">
+    <div class="item-details">
+      <h3>{{ item.productName }}</h3>
+
+      <p>₹ {{ item.unitPrice }}</p>
+    </div>
+
+    <div class="quantity-controls">
+      <button (click)="decreaseQuantity(item)">−</button>
+
+      <span>
+        {{ item.quantity }}
+      </span>
+
+      <button (click)="increaseQuantity(item)">+</button>
+    </div>
+  </div>
+
+  <div class="total">Total: ₹ {{ totalAmount }}</div>
+
+  <button class="checkout-btn" routerLink="/checkout">Proceed To Checkout</button>
+</div>
