@@ -16,17 +16,14 @@ namespace ScentSphere.Application.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly IPasswordHasher _passwordHasher;
-        private readonly IEmailService _emailService;
         private readonly IJwtTokenService _jwtTokenService;
         public AuthService(
             ApplicationDbContext context,
             IPasswordHasher passwordHasher,
-            IEmailService emailService,
             IJwtTokenService jwtTokenService)
         {
             _context = context;
             _passwordHasher = passwordHasher;
-            _emailService = emailService;
             _jwtTokenService = jwtTokenService;
         }
 
@@ -87,23 +84,6 @@ namespace ScentSphere.Application.Services
 
                 await _context.SaveChangesAsync();
 
-                //await _emailService.SendEmailAsync(
-                //    user.Email,
-                //    "Welcome to ScentSphere",
-                //    $"""
-                //        Hi {user.FirstName},
-
-                //        Welcome to ScentSphere.
-
-                //        Your account has been successfully created.
-
-                //        You can now login and start exploring our perfume collection.
-
-                //        Happy Shopping!
-
-                //        Team ScentSphere
-                //        """);
-
                 return new AuthResponse
                 {
                     IsSuccess = true,
@@ -163,11 +143,6 @@ namespace ScentSphere.Application.Services
             };
         }
 
-        public async Task<AuthResponse> VerifyEmailAsync(
-            VerifyEmailRequest request)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<AuthResponse> LogoutAsync()
         {

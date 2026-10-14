@@ -40,7 +40,7 @@ public class ExceptionHandlingMiddleware
                 };
 
                 var json = JsonSerializer.Serialize(problem);
-                await context.Response.WriteAsync(json);
+                await context.Response.WriteAsync(json, context.RequestAborted);
             }
         }
     }

@@ -114,8 +114,7 @@ public class CartService : ICartService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error adding product {ProductId} to cart for user {UserId}", request?.ProductId, userId);
-            throw;
+            throw new Exception($"Error adding product {request?.ProductId} to cart for user {userId}", ex);
         }
     }
 
@@ -152,8 +151,8 @@ public class CartService : ICartService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating cart item {CartItemId}", cartItemId);
-            throw;
+            // Rethrow with contextual information instead of logging here to avoid duplicate logging at higher levels
+            throw new Exception($"Error updating cart item {cartItemId}", ex);
         }
     }
 
@@ -189,8 +188,8 @@ public class CartService : ICartService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error removing cart item {CartItemId}", cartItemId);
-            throw;
+            // Rethrow with contextual information instead of logging here to avoid duplicate logging at higher levels
+            throw new Exception($"Error removing cart item {cartItemId}", ex);
         }
     }
 }

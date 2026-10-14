@@ -1,49 +1,43 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using ScentSphere.Application.Common;
+using ScentSphere.Middleware;
+using ScentSphere.Filters;
 using ScentSphere.Application.Interfaces;
 using ScentSphere.Application.Services;
 using ScentSphere.Domain.Entities;
-using ScentSphere.Filters;
 using ScentSphere.Infrastructure.Auth;
-using ScentSphere.Infrastructure.Email;
 using ScentSphere.Infrastructure.Security;
-using ScentSphere.Middleware;
 using ScentSphere.Persistence.Context;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Logging
+// ensure console logging is available for development and tests
 builder.Logging.AddConsole();
 
-// CORS
+// Add services to the container.
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AngularPolicy", policy =>
-    {
-        policy
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials()
-            .WithOrigins(
-                "http://localhost:4200",
-                "https://scentsphere-ui.onrender.com"
-            );
-    });
+    options.AddPolicy("AngularPolicy",
+        policy =>
+        {
+            policy
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins(
+                    "http://localhost:4200");
+        });
 });
-
-// Controllers
 builder.Services.AddControllers(options =>
 {
+    // global model validation filter
     options.Filters.Add<ValidateModelAttribute>();
 });
-
-// Swagger
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc(
@@ -84,24 +78,15 @@ builder.Services.AddSwaggerGen(options =>
             }
         });
 });
-
-// Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString(
-            "DefaultConnection"));
+        builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// JWT Validation
-
-var jwtKey = builder.Configuration["Jwt:Key"];
-
-if (string.IsNullOrWhiteSpace(jwtKey))
-{
-    throw new InvalidOperationException(
-        "JWT Key is not configured.");
-}
+builder.Services.AddScoped<
+    IJwtTokenService,
+    JwtTokenService>();
 
 builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme)
@@ -123,124 +108,47 @@ builder.Services.AddAuthentication(
 
             IssuerSigningKey =
                 new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(jwtKey))
+                    Encoding.UTF8.GetBytes(
+                        builder.Configuration["Jwt:Key"]!))
         };
 });
 
 builder.Services.AddAuthorization();
 
-// Services
-builder.Services.AddScoped<
-    IJwtTokenService,
-    JwtTokenService>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
-builder.Services.AddScoped<
-    IPasswordHasher,
-    PasswordHasher>();
 
-builder.Services.AddScoped<
-    IAuthService,
-    AuthService>();
-
-builder.Services.AddScoped<
-    IProductService,
-    ProductService>();
-
-builder.Services.AddScoped<
-    ICategoryService,
-    CategoryService>();
-
-builder.Services.AddScoped<
-    ICartService,
-    CartService>();
-
-builder.Services.AddScoped<
-    IOrderService,
-    OrderService>();
-
-builder.Services.AddScoped<
-    IEmailService,
-    SmtpEmailService>();
-
-builder.Services.Configure<EmailSettings>(
-    builder.Configuration.GetSection(
-        "EmailSettings"));
 
 var app = builder.Build();
 
-// Swagger available everywhere
-app.UseSwagger();
-app.UseSwaggerUI();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-// Global Exception Middleware
+// centralized exception handling middleware (non-invasive)
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-
 app.UseHttpsRedirection();
-
 app.UseCors("AngularPolicy");
-
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
 
-//
-// Seed Data
-//
-try
+using (var scope = app.Services.CreateScope())
 {
-    using var scope =
-        app.Services.CreateScope();
-
     var db =
         scope.ServiceProvider
             .GetRequiredService<ApplicationDbContext>();
 
-    if (db.Database.CanConnect())
-    {
-        if (!db.Brands.Any())
-        {
-            db.Brands.AddRange(
-                new Brand
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Dior",
-                    Description = "Dior Perfumes"
-                },
-                new Brand
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Chanel",
-                    Description = "Chanel Perfumes"
-                });
-
-            db.SaveChanges();
-        }
-
-        if (!db.Categories.Any())
-        {
-            db.Categories.AddRange(
-                new Category
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Men"
-                },
-                new Category
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Women"
-                });
-
-            db.SaveChanges();
-        }
-    }
-}
-catch (Exception ex)
-{
-    app.Logger.LogError(
-        ex,
-        "Database initialization failed.");
 }
 
-app.Run();
+// Run the app asynchronously so top-level await can be used and SonarQube recommendations are satisfied
+await app.RunAsync();
