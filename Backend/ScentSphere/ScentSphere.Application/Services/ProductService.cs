@@ -19,9 +19,6 @@ namespace ScentSphere.Application.Services
         public async Task<List<ProductDto>> GetAllAsync()
         {
             return await _context.Products
-                .Include(x => x.Brand)
-                .Include(x => x.Category)
-                .Include(x => x.Images)
                 .Where(x => !x.IsDeleted)
                 .Select(p => new ProductDto
                 {
@@ -48,9 +45,6 @@ namespace ScentSphere.Application.Services
         public async Task<ProductDto?> GetByIdAsync(Guid id)
         {
             return await _context.Products
-                .Include(x => x.Brand)
-                .Include(x => x.Category)
-                .Include(x => x.Images)
                 .Where(x =>
                     x.Id == id &&
                     !x.IsDeleted)
@@ -79,9 +73,6 @@ namespace ScentSphere.Application.Services
         public async Task<List<ProductDto>> SearchAsync(string keyword)
         {
             return await _context.Products
-                .Include(x => x.Brand)
-                .Include(x => x.Category)
-                .Include(x => x.Images)
                 .Where(x =>
                     !x.IsDeleted &&
                     (
