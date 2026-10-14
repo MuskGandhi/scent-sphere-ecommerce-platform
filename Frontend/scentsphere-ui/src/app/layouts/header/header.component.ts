@@ -13,8 +13,8 @@ import { AuthService } from '../../core/services/auth.service';
 export class HeaderComponent {
   showDropdown = false;
   constructor(
-    private router: Router,
-    public authService: AuthService,
+    private readonly router: Router,
+    public readonly authService: AuthService,
   ) {}
 
   isLoggedIn(): boolean {

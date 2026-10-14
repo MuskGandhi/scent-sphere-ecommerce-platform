@@ -81,12 +81,6 @@
   gap: 20px;
 }
 
-.cart-icon {
-  color: white;
-  font-size: 24px;
-  text-decoration: none;
-}
-
 .profile-circle {
   width: 42px;
 
@@ -98,6 +92,8 @@
 
   color: #111827;
 
+  font: inherit;
+
   font-weight: 700;
 
   display: flex;
@@ -107,6 +103,10 @@
   justify-content: center;
 
   cursor: pointer;
+}
+
+.profile-circle:hover {
+  background: #d4af37;
 }
 
 .profile-dropdown {
@@ -142,22 +142,6 @@
   color: #d4af37;
 }
 
-.logout-btn {
-  width: 100%;
-
-  padding: 12px;
-
-  border: none;
-
-  border-radius: 10px;
-
-  background: #111827;
-
-  color: white;
-
-  cursor: pointer;
-}
-
 .user-email {
   color: #111827;
 
@@ -167,7 +151,7 @@
 
   margin-bottom: 12px;
 
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .logout-btn {

@@ -9,7 +9,7 @@ import { Product } from '../../models/product';
 export class ProductService {
   private readonly api = 'https://localhost:7270/api/products';
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.api);

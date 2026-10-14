@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CartItem } from '../../../models/cart';
 import { CartService } from '../../../core/services/cart.service';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -18,9 +17,9 @@ export class CartComponent implements OnInit {
   totalAmount = 0;
 
   constructor(
-    private cartService: CartService,
-    private cdr: ChangeDetectorRef,
-    private router: Router,
+    private readonly cartService: CartService,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {

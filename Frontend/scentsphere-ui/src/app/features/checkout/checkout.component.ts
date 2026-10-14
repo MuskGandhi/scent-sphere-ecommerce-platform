@@ -21,10 +21,10 @@ export class CheckoutComponent implements OnInit {
   isPlacingOrder = false;
 
   constructor(
-    private cartService: CartService,
-    private orderService: OrderService,
-    private router: Router,
-    private cdr: ChangeDetectorRef,
+    private readonly cartService: CartService,
+    private readonly orderService: OrderService,
+    private readonly router: Router,
+    private readonly cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {

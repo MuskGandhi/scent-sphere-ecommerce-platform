@@ -12,7 +12,7 @@ import { Brand } from '../../models/product-management';
 export class BrandService {
   private readonly apiUrl = `${environment.apiUrl}/brands`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getBrands(): Observable<Brand[]> {
     return this.http.get<Brand[]>(this.apiUrl);

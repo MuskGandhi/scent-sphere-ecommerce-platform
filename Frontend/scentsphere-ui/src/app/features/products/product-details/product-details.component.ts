@@ -21,10 +21,10 @@ export class ProductDetailsComponent implements OnInit {
   product!: Product;
 
   constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private cartService: CartService,
-    private router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly productService: ProductService,
+    private readonly cartService: CartService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {

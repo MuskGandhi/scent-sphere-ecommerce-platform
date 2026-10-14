@@ -21,11 +21,18 @@
   <div *ngIf="isLoggedIn()" class="user-section">
     <a routerLink="/cart" class="cart-icon"> 🛒 </a>
 
-    <div class="profile-circle" (click)="showDropdown = !showDropdown">
+    <button
+      type="button"
+      class="profile-circle"
+      aria-label="Profile menu"
+      aria-controls="profile-dropdown"
+      [attr.aria-expanded]="showDropdown"
+      (click)="showDropdown = !showDropdown"
+    >
       {{ getUserName().charAt(0).toUpperCase() }}
-    </div>
+    </button>
 
-    <div class="profile-dropdown" *ngIf="showDropdown">
+    <div id="profile-dropdown" class="profile-dropdown" *ngIf="showDropdown">
       <div class="user-email">
         {{ getUserName() }}
       </div>

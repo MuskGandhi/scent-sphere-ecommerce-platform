@@ -12,7 +12,7 @@ import { LoginRequest, RegisterRequest, AuthResponse } from '../../models/auth';
 export class AuthService {
   private readonly apiUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   login(request: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, request);

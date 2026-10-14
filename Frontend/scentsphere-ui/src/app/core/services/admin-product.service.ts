@@ -11,7 +11,7 @@ import { AdminProduct } from '../../models/product-management';
 export class AdminProductService {
   private readonly apiUrl = `${environment.apiUrl}/admin/products`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   createProduct(request: any): Observable<any> {
     return this.http.post(this.apiUrl, request);

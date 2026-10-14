@@ -11,7 +11,7 @@ import { Order } from '../../models/order';
 export class OrderService {
   private readonly apiUrl = `${environment.apiUrl}/orders`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   checkout(): Observable<any> {
     return this.http.post(`${this.apiUrl}/checkout`, {});

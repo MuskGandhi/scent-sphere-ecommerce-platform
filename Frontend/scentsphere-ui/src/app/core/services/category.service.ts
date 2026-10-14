@@ -12,7 +12,7 @@ import { Category } from '../../models/category';
 export class CategoryService {
   private readonly apiUrl = `${environment.apiUrl}/categories`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.apiUrl);

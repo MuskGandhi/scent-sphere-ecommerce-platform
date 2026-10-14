@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LoginRequest } from '../../../models/auth';
 import { NotificationService } from '../../../core/services/notification.service';
 
@@ -24,10 +18,10 @@ export class LoginComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private notificationService: NotificationService,
+    private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -54,8 +48,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userName', response.userName);
         if (response.role === 'Admin') {
           this.router.navigate(['/admin/product-management']);
-
-          return;
         } else {
           this.router.navigate(['/products']);
         }

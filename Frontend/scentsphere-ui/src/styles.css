@@ -19,11 +19,6 @@ body {
   height: 100%;
 }
 
-body {
-  background: var(--background);
-  color: var(--text);
-  font-family: "Segoe UI", sans-serif;
-}
 
 .container {
   width: 90%;

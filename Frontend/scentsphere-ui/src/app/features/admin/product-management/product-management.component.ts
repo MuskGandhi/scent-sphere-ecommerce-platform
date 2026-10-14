@@ -42,9 +42,9 @@ export class ProductManagementComponent implements OnInit {
     private adminProductService: AdminProductService,
     private brandService: BrandService,
     private categoryService: CategoryService,
-    private fb: FormBuilder,
-    private cdr: ChangeDetectorRef,
-    private notificationService: NotificationService,
+    private readonly fb: FormBuilder,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@ import { Cart } from '../../models/cart';
 export class CartService {
   private readonly apiUrl = `${environment.apiUrl}/cart`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   getCart(): Observable<Cart> {
     return this.http.get<Cart>(this.apiUrl);
