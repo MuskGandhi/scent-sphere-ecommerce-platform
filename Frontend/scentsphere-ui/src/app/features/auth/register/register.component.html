@@ -15,7 +15,13 @@
       <form [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="row">
           <div class="form-group">
-            <input type="text" placeholder="First Name" formControlName="firstName" />
+            <label class="visually-hidden" for="register-first-name">First Name</label>
+            <input
+              id="register-first-name"
+              type="text"
+              placeholder="First Name"
+              formControlName="firstName"
+            />
 
             <small
               class="validation-error"
@@ -29,7 +35,13 @@
           </div>
 
           <div class="form-group">
-            <input type="text" placeholder="Last Name" formControlName="lastName" />
+            <label class="visually-hidden" for="register-last-name">Last Name</label>
+            <input
+              id="register-last-name"
+              type="text"
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
 
             <small
               class="validation-error"
@@ -44,7 +56,13 @@
         </div>
 
         <div class="form-group">
-          <input type="email" placeholder="Email Address" formControlName="email" />
+          <label class="visually-hidden" for="register-email">Email Address</label>
+          <input
+            id="register-email"
+            type="email"
+            placeholder="Email Address"
+            formControlName="email"
+          />
 
           <small
             class="validation-error"
@@ -65,7 +83,13 @@
         </div>
 
         <div class="form-group">
-          <input type="text" placeholder="Phone Number" formControlName="phoneNumber" />
+          <label class="visually-hidden" for="register-phone-number">Phone Number</label>
+          <input
+            id="register-phone-number"
+            type="text"
+            placeholder="Phone Number"
+            formControlName="phoneNumber"
+          />
 
           <small
             class="validation-error"
@@ -79,7 +103,13 @@
         </div>
 
         <div class="form-group">
-          <input type="password" placeholder="Password" formControlName="password" />
+          <label class="visually-hidden" for="register-password">Password</label>
+          <input
+            id="register-password"
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
 
           <small
             class="validation-error"
