@@ -153,11 +153,5 @@ namespace ScentSphere.Application.Services
             });
         }
 
-        private string GenerateOtp()
-        {
-            return Random.Shared
-                .Next(100000, 999999)
-                .ToString();
-        }
     }
 }

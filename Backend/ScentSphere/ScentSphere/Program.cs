@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using ScentSphere.Application.Common;
 using ScentSphere.Middleware;
 using ScentSphere.Filters;
 using ScentSphere.Application.Interfaces;
 using ScentSphere.Application.Services;
-using ScentSphere.Domain.Entities;
 using ScentSphere.Infrastructure.Auth;
 using ScentSphere.Infrastructure.Security;
 using ScentSphere.Persistence.Context;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ScentSphere.Application.DTOs.Orders;
 using ScentSphere.Application.Interfaces;
 using ScentSphere.Domain.Entities;
@@ -102,8 +97,6 @@ namespace ScentSphere.Application.Services
             GetOrdersAsync(Guid userId)
         {
             return await _context.Orders
-                .Include(x => x.Items)
-                .ThenInclude(x => x.Product)
                 .Where(x => x.UserId == userId)
                 .OrderByDescending(x => x.CreatedAt)
                 .Select(x => new OrderDto
@@ -132,8 +125,7 @@ namespace ScentSphere.Application.Services
                 Guid orderId)
         {
             return await _context.Orders
-                .Include(x => x.Items)
-                .ThenInclude(x => x.Product)
+
                 .Where(x =>
                     x.UserId == userId &&
                     x.Id == orderId)

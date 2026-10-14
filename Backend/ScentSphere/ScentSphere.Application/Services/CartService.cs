@@ -151,8 +151,7 @@ public class CartService : ICartService
         }
         catch (Exception ex)
         {
-            // Rethrow with contextual information instead of logging here to avoid duplicate logging at higher levels
-            throw new Exception($"Error updating cart item {cartItemId}", ex);
+            throw new InvalidOperationException($"Error updating cart item {cartItemId}", ex);
         }
     }
 
@@ -188,8 +187,7 @@ public class CartService : ICartService
         }
         catch (Exception ex)
         {
-            // Rethrow with contextual information instead of logging here to avoid duplicate logging at higher levels
-            throw new Exception($"Error removing cart item {cartItemId}", ex);
+            throw new InvalidOperationException($"Error removing cart item {cartItemId}", ex);
         }
     }
 }
