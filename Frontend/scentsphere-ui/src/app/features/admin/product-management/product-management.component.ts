@@ -10,6 +10,7 @@ import { CategoryService } from '../../../core/services/category.service';
 import { BrandService } from '../../../core/services/brand.service';
 
 import { Brand, Category } from '../../../models/product-management';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-product-management',
@@ -32,6 +33,9 @@ export class ProductManagementComponent implements OnInit {
   brands: Brand[] = [];
 
   categories: Category[] = [];
+  showDeleteModal = false;
+
+  productToDelete: Product | null = null;
 
   constructor(
     private productService: ProductService,
@@ -40,6 +44,7 @@ export class ProductManagementComponent implements OnInit {
     private categoryService: CategoryService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -121,23 +126,47 @@ export class ProductManagementComponent implements OnInit {
   }
 
   deleteProduct(product: Product): void {
-    if (!confirm(`Delete ${product.name}?`)) {
+    this.productToDelete = product;
+
+    this.showDeleteModal = true;
+  }
+
+  confirmDelete(): void {
+    if (!this.productToDelete) {
       return;
     }
 
-    this.adminProductService.deleteProduct(product.id).subscribe({
-      next: () => {
-        this.products = this.products.filter((x) => x.id !== product.id);
+    const productId = this.productToDelete.id;
+    const productName = this.productToDelete.name;
 
+    this.adminProductService.deleteProduct(productId).subscribe({
+      next: () => {
+        this.products = this.products.filter((x) => x.id !== productId);
+
+        // Close modal FIRST
+        this.closeDeleteModal();
+
+        // Refresh UI
         this.cdr.detectChanges();
 
-        alert('Product Deleted');
+        // Show success message
+        this.notificationService.success(`${productName} deleted successfully`);
       },
 
       error: (error) => {
         console.error(error);
+
+        this.notificationService.error('Unable to delete product');
+
+        this.closeDeleteModal();
       },
     });
+  }
+
+  closeDeleteModal(): void {
+    this.showDeleteModal = false;
+
+    this.productToDelete = null;
   }
 
   openCreateForm(): void {
@@ -186,8 +215,7 @@ export class ProductManagementComponent implements OnInit {
     if (this.editingProductId) {
       this.adminProductService.updateProduct(this.editingProductId, request).subscribe({
         next: () => {
-          alert('Product Updated Successfully');
-
+          this.notificationService.success('Product updated successfully');
           this.showForm = false;
 
           this.editingProductId = null;
@@ -204,7 +232,7 @@ export class ProductManagementComponent implements OnInit {
     // CREATE
     this.adminProductService.createProduct(request).subscribe({
       next: () => {
-        alert('Product Created Successfully');
+        this.notificationService.success('Product created successfully');
 
         this.showForm = false;
 

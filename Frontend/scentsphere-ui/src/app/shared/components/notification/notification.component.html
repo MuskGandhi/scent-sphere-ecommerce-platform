@@ -1,0 +1,5 @@
+@if (notification$ | async; as notification) {
+  <div class="notification" [ngClass]="notification.type">
+    {{ notification.message }}
+  </div>
+}

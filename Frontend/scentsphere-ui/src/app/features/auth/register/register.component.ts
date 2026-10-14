@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterRequest } from '../../../models/auth';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -56,9 +58,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(request).subscribe({
       next: (response) => {
         this.isLoading = false;
-
-        alert('Registration Successful');
-
+        this.notificationService.success('Registration successful');
         this.router.navigate(['/login']);
       },
 

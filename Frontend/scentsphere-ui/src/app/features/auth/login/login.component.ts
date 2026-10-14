@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { LoginRequest } from '../../../models/auth';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +64,7 @@ export class LoginComponent implements OnInit {
       error: () => {
         this.isLoading = false;
 
-        alert('Invalid email or password');
+        this.notificationService.error('Invalid email or password');
       },
     });
   }

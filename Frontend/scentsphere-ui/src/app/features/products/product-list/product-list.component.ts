@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Product } from '../../../models/product';
 import { ProductService } from '../../../core/services/product.service';
 import { CartService } from '../../../core/services/cart.service';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-product-list',
@@ -26,6 +27,7 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private cdr: ChangeDetectorRef,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -94,7 +96,7 @@ export class ProductListComponent implements OnInit {
   addToCart(product: Product): void {
     this.cartService.addItem(product.id, 1).subscribe({
       next: () => {
-        alert(`${product.name} added to cart`);
+        this.notificationService.success(`${product.name} added to cart`);
       },
       error: (error) => {
         console.log(error);

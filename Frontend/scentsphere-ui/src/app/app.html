@@ -1,11 +1,12 @@
-@if(showLayout()) {
+@if (showLayout()) {
   <app-header></app-header>
 }
+<app-notification></app-notification>
 
 <main>
   <router-outlet></router-outlet>
 </main>
 
-@if(showLayout()) {
+@if (showLayout()) {
   <app-footer></app-footer>
 }
