@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using global::ScentSphere.Domain.Common;
-using ScentSphere.Domain.Entities;
+﻿using ScentSphere.Domain.Common;
 
 namespace ScentSphere.Domain.Entities
 {
