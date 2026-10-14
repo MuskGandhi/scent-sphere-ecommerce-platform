@@ -38,10 +38,10 @@ export class ProductManagementComponent implements OnInit {
   productToDelete: Product | null = null;
 
   constructor(
-    private productService: ProductService,
-    private adminProductService: AdminProductService,
-    private brandService: BrandService,
-    private categoryService: CategoryService,
+    private readonly productService: ProductService,
+    private readonly adminProductService: AdminProductService,
+    private readonly brandService: BrandService,
+    private readonly categoryService: CategoryService,
     private readonly fb: FormBuilder,
     private readonly cdr: ChangeDetectorRef,
     private readonly notificationService: NotificationService,

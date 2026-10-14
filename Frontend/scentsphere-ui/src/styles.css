@@ -51,25 +51,6 @@ body {
   opacity: .9;
 }
 
-/* .card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-} */
-
-:root {
-
-  --background: #f7f5f1;
-
-  --surface: #ffffff;
-
-  --primary: #222;
-
-  --accent: #b8965b;
-
-  --border: #e3ddd3;
-}
 
 body {
 
