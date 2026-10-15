@@ -209,13 +209,12 @@ SonarCloud is used to track maintainability, reliability, security, technical de
 
 Centralized exception handling and logging improve operational supportability.
 
-## 13. Assessment Mapping
+## 13. Assumptions and limitations
 
-| Assessment area                    | ScentSphere implementation                                        |
-| ---------------------------------- | ----------------------------------------------------------------- |
-| Architecture and project structure | Clean Architecture and separated application layers               |
-| REST API and backend               | ASP.NET Core API controllers and application services             |
-| Database design                    | SQL Server, EF Core, relational entities, and concurrency control |
-| Testing                            | NUnit unit tests and API integration tests                        |
-| CI/CD                              | GitHub-connected Render deployment                                |
-| Code quality                       | SonarCloud analysis and iterative remediation                     |
+- **CORS:** The API currently allows browser requests from `http://localhost:4200` only. Add the actual deployed frontend origin to the API CORS policy before using the production frontend from a browser.
+- **Database migrations:** Migrations are present but are not applied automatically during API startup. Apply them explicitly to the target database before using the API.
+- **Admin route:** The login component navigates administrators to `/admin/product-management`, but the Angular route table declares `/admin/products`. These paths should be reconciled; this report does not change application behavior.
+- **Frontend route protection:** `authGuard` exists. The backend still authorizes cart and order APIs, but the frontend may render those routes before an API request is rejected.
+- **Token storage:** The frontend stores the JWT in `localStorage`. This is convenient for the current interceptor but makes the token accessible to JavaScript; production hardening should include XSS controls or a reviewed alternative token-storage design.
+- **Deployment automation:** The Render URL and Dockerfile show deployment intent.
+- **Documentation drift:** The root README names Azure DevOps, while the production environment points to Render and the supplied report describes GitHub-connected Render deployment. Confirm the actual source-control and deployment configuration and update the repository documentation accordingly.
